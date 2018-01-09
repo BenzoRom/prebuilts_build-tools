@@ -41,6 +41,7 @@ EOF
     BUILDDIR=${SOONG_OUT} ./bootstrap.bash
     SOONG_BINARIES=(
         acp
+        bison
         bpfmt
         ckati
         ckati_stamp_dump
@@ -61,6 +62,8 @@ EOF
     mkdir -p ${SOONG_OUT}/dist/bin
     cp ${SOONG_BINARIES[@]/#/${SOONG_HOST_OUT}/bin/} ${SOONG_OUT}/dist/bin/
     cp -R ${SOONG_HOST_OUT}/lib* ${SOONG_OUT}/dist/
+
+    cp -r external/bison/data ${SOONG_OUT}/dist-common/bison
 
     if [[ $OS == "linux" ]]; then
         # Build ASAN versions
